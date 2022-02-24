@@ -73,12 +73,11 @@ public class AddressBookMain {
 			for (int j = 0; j < contact.size(); j++) {
 				PersonInfo p = contact.get(j);
 				if (name.equals(p.getFirstName())) {
-					contact.removeAll(contact);
+					contact.remove(j);
 					for (PersonInfo gen1 : contact) {
 						System.out.println("Updated information is "+gen1);
 					}
 					System.out.println("Information is deleted");
-					System.out.println(contact.isEmpty());
 
 				}
 				else {
@@ -91,18 +90,26 @@ public class AddressBookMain {
 	
 	public static void main(String[] args) {
 		AddressBookMain address = new AddressBookMain();
+		
+		//Enter for person1
 		address.enterInform();
 		callMethod();
 		address.setPersonInfo(contact);
 		
+		//enter for person2
+		address.enterInform();
+		callMethod();
+		address.setPersonInfo(contact);
+		
+		
+		//printing the multiple person information
 		for (PersonInfo gen : contact) {
 			System.out.println(gen);
 		}
 		
 		
 
-		// Delete the information with name
-		address.deletePerson();
+		
 	   //Edit person information
 		System.out.println("Enter the name of the person you want to add");
 		Scanner s = new Scanner(System.in);
@@ -123,7 +130,8 @@ public class AddressBookMain {
 		for (PersonInfo gen1 : contact) {
 			System.out.println("Updated information is "+gen1);
 		}
-
+		 //Delete the information with name
+			address.deletePerson();
 		
 	}
 
