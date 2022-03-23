@@ -7,10 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
 
 public class AddressBookMain {
 	
@@ -46,7 +42,9 @@ public class AddressBookMain {
 	public void setPersonInfo(List<PersonInfo> infos) {
 		this.infos = infos;
 	}
-
+    /**
+     * This method is used to enter the person's information
+     */
 	public static  void enterInform() {
 	     Scanner sc = new Scanner(System.in);
 		System.out.println("Enter your First name :");
@@ -68,12 +66,15 @@ public class AddressBookMain {
 		
 
 	}
-   
+	
 	 public static void callMethod() {
 		 PersonInfo person = new PersonInfo(fname, lname, add, city, state, zip, phoneno, emailid);
 		 contact.add(person);
 		 addressBook.put(addressId, contact);
 	 }
+	 /**
+	     * This method is used to delete the person's information
+	     */
 	 public void deletePerson() {
 		 System.out.println("Enter the name of the person you want to delete");
 			Scanner s = new Scanner(System.in);
@@ -94,6 +95,9 @@ public class AddressBookMain {
 				}
 			}
 	 }
+	 /**
+	     * This method is used to edit the person's information
+	     */
 	 
 	 public  void editPerson() {
 		
@@ -127,6 +131,9 @@ public class AddressBookMain {
 		
 		System.out.println("How many person's information You want to add");	
 		int n=s.nextInt();
+		
+		
+		
 		System.out.println("Enter your address id :  address1 or address2");
 		s.nextLine();
 		addressId = s.nextLine();
@@ -151,22 +158,36 @@ public class AddressBookMain {
 		}
 			break;
 		}
-		
-			
-		//printing the multiple person information
+		/**
+		 * calling the method to write the contact information to text file
+		 */
+		new AddressBookIOService().writeData(contact);
+		/**
+		 * calling the method to write the contact information to text file
+		 */
+		new AddressBookIOService().printData();
+		/**
+		 * printing the multiple person information
+		 */
 		for (PersonInfo gen : contact) {
 			System.out.println(gen);
 		}
 		
-		//printing addressbook
+		/**
+		 * printing addressbook
+		 */
 		System.out.println(address.getAddressBook());
 		
 		
-	    //Edit person information
+	    /**
+	     * Edit person information
+	     */
 		address.editPerson();
 		
 		
-		//Delete the information with name
+		/**
+		 * Delete the information with name
+		 */
 		address.deletePerson();
 		
 	}
