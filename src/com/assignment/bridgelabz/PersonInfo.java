@@ -13,6 +13,7 @@ public class PersonInfo {
 		private String firstName;
 		
 
+		
 		private String lastName;
 		private String address;
 		private String city;
@@ -66,6 +67,26 @@ public class PersonInfo {
 			return email;
 		}
 		
+		public String toStringcsv() {
+			StringBuilder dataBuilder = new StringBuilder();
+	        appendFieldValue(dataBuilder, firstName);
+	        appendFieldValue(dataBuilder, lastName);
+	        appendFieldValue(dataBuilder, address);
+	        appendFieldValue(dataBuilder, city);
+	        appendFieldValue(dataBuilder, state);
+	        appendFieldValue(dataBuilder, zip);
+	        appendFieldValue(dataBuilder, phoneNo);
+	        appendFieldValue(dataBuilder, email);
+
+	        return dataBuilder.toString();
+		}
+		private void appendFieldValue(StringBuilder dataBuilder, String fieldValue) {
+	        if(fieldValue != null) {
+	            dataBuilder.append(fieldValue).append(",");
+	        } else {
+	            dataBuilder.append("").append(",");
+	        }
+	    }
 		@Override
 		public String toString() {
 			return "PersonInfo [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city="
