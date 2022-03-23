@@ -1,5 +1,6 @@
 package com.assignment.bridgelabz;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -128,6 +129,7 @@ public class AddressBookMain {
 	public static void main(String[] args) {
 		AddressBookMain address = new AddressBookMain();
 		Scanner s = new Scanner(System.in);
+		String[] header= {"First name","lastName","address","city","state","zip","phone number","emailid"};
 		
 		System.out.println("How many person's information You want to add");	
 		int n=s.nextInt();
@@ -163,15 +165,22 @@ public class AddressBookMain {
 		 */
 		new AddressBookIOService().writeData(contact);
 		/**
-		 * calling the method to write the contact information to text file
+		 * calling the method to write the contact information to Console
 		 */
-		new AddressBookIOService().printData();
+		//new AddressBookIOService().printData();
 		/**
-		 * printing the multiple person information
+		 * printing the multiple person information into csv file
 		 */
-		for (PersonInfo gen : contact) {
-			System.out.println(gen);
+		try {
+			new CsvFileService().writeToCsv(contact, header);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		/**
+		 * calling the method to write the contact information to Console
+		 */
+		new CsvFileService().ReadfromCSV();
 		
 		/**
 		 * printing addressbook
